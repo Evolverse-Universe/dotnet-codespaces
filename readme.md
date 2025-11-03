@@ -4,6 +4,8 @@ Want to try out the latest performance improvements coming with .NET for web dev
 
 This repo builds a Weather API, OpenAPI integration to test with [Scalar](https://learn.microsoft.com/aspnet/core/fundamentals/openapi/using-openapi-documents?view=aspnetcore-9.0#use-scalar-for-interactive-api-documentation), and displays the data in a web application using Blazor with .NET. 
 
+**NEW**: This repository now includes the **BLEU Flame™ Market Tier** and **Zion Gold Bar Protocol** - advanced ENFT (Enhanced Non-Fungible Token) systems integrated with blockchain technology, featuring Saturn-Strata resource classification, MetaVault yield generation, and cross-sector income routing.
+
 We've given you both a frontend and backend to play around with and where you go from here is up to you!
 
 Everything you do here is contained within this one codespace. There is no repository on GitHub yet. If and when you’re ready you can click "Publish Branch" and we’ll create your repository and push up your project. If you were just exploring then and have no further need for this code then you can simply delete your codespace and it's gone forever.
@@ -37,6 +39,39 @@ You can also run this repository locally by following these instructions:
 
 ![VS Code stop debuggin on both backend and frontend](images/StopRun.png)
 
+## BLEU Flame™ & Zion Gold Bar Protocol
+
+This repository includes two advanced blockchain-based asset systems:
+
+### 🔥 BLEU Flame™ Market Tier
+A comprehensive ENFT system with three tiers (PublicDrop, EliteFounders, GodTier) featuring:
+- SmartCeramic digital twins with thermal calibration tracking
+- MetaVault yield generation using formula: `Yield = (Temperature × MemoryIndex × OwnershipTier) / π⁴`
+- 60/30/10 revenue split across tiers
+- Harvest-Mint-Heal economic loop
+- Six cross-sector income routes (FlameCoin, HarvestCoin, ScrollCoin, Blu-Tillion, EGoin)
+
+**Documentation**: `SampleApp/BackEnd/Data/BLEU_FLAME_README.md`
+
+### ⚜️ Zion Gold Bar Protocol
+Saturn-Strata classified resource tokens featuring:
+- Six-layer cosmic stack (Gold Bar, Silver Ring, Pyro-Ring, Medicinal Mineral, Shell Coin, ES0IL Substrate)
+- EV0L Rosetta Ledger Scroll integration
+- Afro-Elohim wealth narrative decode
+- BLEU Vault Certificate system
+- God-Tier classification with 5x yield multiplier
+
+**Documentation**: `SampleApp/BackEnd/Data/ZION_GOLD_BAR_README.md`
+
+### API Endpoints
+Access the interactive API documentation at `/scalar` when running the backend:
+- **BLEU Flame**: `/bleu/*` endpoints
+- **MetaVault**: `/metavault/*` endpoints  
+- **Zion Gold Bar**: `/zion/*` endpoints
+
+### Smart Contracts
+- **BLEULION_TREASURY.sol**: Revenue vault and staking mechanism (Solidity)
+- Implements yield calculations, tier allocations, and compound interest at π⁴ rate
 
 ## Contributing
 

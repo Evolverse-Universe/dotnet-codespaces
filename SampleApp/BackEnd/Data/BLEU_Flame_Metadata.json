@@ -1,0 +1,120 @@
+{
+  "name": "BLEU Flame™ Collection",
+  "description": "BLEU Flame™ SmartCeramic ENFT Collection - Physical token layer with digital twin ownership and memory logging. Part of the BLEU Codex recursive economy.",
+  "image": "ipfs://QmBLEUFlameCollection/image.png",
+  "external_url": "https://evolverse.universe/bleu-flame",
+  "attributes": [
+    {
+      "trait_type": "Collection",
+      "value": "BLEU Flame™"
+    },
+    {
+      "trait_type": "Type",
+      "value": "SmartCeramic ENFT"
+    },
+    {
+      "trait_type": "Ecosystem",
+      "value": "BLEU Codex"
+    }
+  ],
+  "tiers": [
+    {
+      "tier": "PublicDrop",
+      "distribution": "60%",
+      "description": "Standard BLEU Flame™ SmartCeramic plates with base thermal calibration",
+      "supply": 6000,
+      "price": "0.1 ETH",
+      "features": [
+        "Thermal calibration tracking",
+        "Memory log recording",
+        "Basic yield generation",
+        "Energy Treasury access"
+      ]
+    },
+    {
+      "tier": "EliteFounders",
+      "distribution": "30%",
+      "description": "Enhanced SmartCeramic plates with advanced features and 2x yield multiplier",
+      "supply": 3000,
+      "price": "0.5 ETH",
+      "features": [
+        "Advanced thermal calibration",
+        "Enhanced memory indexing",
+        "2x yield multiplier",
+        "Priority MetaVault access",
+        "Founder recognition"
+      ]
+    },
+    {
+      "tier": "GodTier",
+      "distribution": "10%",
+      "description": "Ultra-rare 1-of-1 SmartCeramic masterpieces with maximum yield and exclusive benefits",
+      "supply": 1000,
+      "price": "2.5 ETH",
+      "features": [
+        "Master thermal calibration",
+        "Maximum memory indexing",
+        "5x yield multiplier",
+        "Exclusive MetaVault priority",
+        "God tier recognition",
+        "Direct revenue stream access",
+        "Custom engraving options"
+      ]
+    }
+  ],
+  "revenue_split": {
+    "public_drop": "60%",
+    "elite_founders": "30%",
+    "god_tier": "10%"
+  },
+  "cross_sector_routes": [
+    {
+      "sector": "SmartCeramics",
+      "mechanism": "Adaptive cookware, industrial heat tiles",
+      "output": "Royalties → FlameCoin"
+    },
+    {
+      "sector": "Meta-Cuisine",
+      "mechanism": "Galaxy Grub™ franchising",
+      "output": "25% yield → HarvestCoin"
+    },
+    {
+      "sector": "ENFT Collectibles",
+      "mechanism": "Tiered drops, resale royalties",
+      "output": "7.5% → BLEULION Fund"
+    },
+    {
+      "sector": "Energy Treasury",
+      "mechanism": "EGoin staking",
+      "output": "Compound daily @ π⁴ rate"
+    },
+    {
+      "sector": "Thermal Data Exchange",
+      "mechanism": "Sell heat-curve datasets",
+      "output": "ScrollCoin"
+    },
+    {
+      "sector": "Space Logistics",
+      "mechanism": "Cargo licensing for smart dishes",
+      "output": "Blu-Tillion"
+    }
+  ],
+  "metavault_formula": {
+    "description": "Yield = (Temperature × MemoryIndex × OwnershipTier) / π⁴",
+    "pi_fourth": 97.409091034,
+    "tier_multipliers": {
+      "public_drop": 1.0,
+      "elite_founders": 2.0,
+      "god_tier": 5.0
+    }
+  },
+  "harvest_mint_heal_loop": {
+    "harvest": "Collect thermal data and usage metrics",
+    "mint": "Generate yield tokens based on vault events",
+    "heal": "Reinvest into Energy Treasury for compound growth"
+  },
+  "treasury_address": "0xBLEULION_TREASURY_CONTRACT_ADDRESS",
+  "ipfs_base": "ipfs://QmBLEUFlame/",
+  "version": "1.0.0",
+  "created_at": "2025-11-03T02:56:51.839Z"
+}
