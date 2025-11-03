@@ -13,6 +13,14 @@ builder.Services.AddHttpClient<WeatherForecastClient>(c =>
     c.BaseAddress = new(url);
 });
 
+builder.Services.AddHttpClient<ZionGoldBarClient>(c =>
+{
+    var url = builder.Configuration["WEATHER_URL"] 
+        ?? throw new InvalidOperationException("WEATHER_URL is not set");
+
+    c.BaseAddress = new(url);
+});
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
