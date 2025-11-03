@@ -4,6 +4,8 @@ Want to try out the latest performance improvements coming with .NET for web dev
 
 This repo builds a Weather API, OpenAPI integration to test with [Scalar](https://learn.microsoft.com/aspnet/core/fundamentals/openapi/using-openapi-documents?view=aspnetcore-9.0#use-scalar-for-interactive-api-documentation), and displays the data in a web application using Blazor with .NET. 
 
+**NEW: 🪙 Zion Gold Bar Classification System** - This repository now includes the Saturn Strata classification system with PDF certificate generation, ENFT token minting, and interactive visualization. [Read more](ZION_GOLD_BAR.md)
+
 We've given you both a frontend and backend to play around with and where you go from here is up to you!
 
 Everything you do here is contained within this one codespace. There is no repository on GitHub yet. If and when you’re ready you can click "Publish Branch" and we’ll create your repository and push up your project. If you were just exploring then and have no further need for this code then you can simply delete your codespace and it's gone forever.
