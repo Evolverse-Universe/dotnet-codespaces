@@ -1,0 +1,2 @@
+TokenId,CertificateId,MintDate,Creator,Weight,Purity,ImageCID,CertificateCID,YieldGenerated,Status
+ZION-000001,BLEU-ZION-001,2025-11-03T02:56:51.839Z,0xCreatorAddress,1.0,99.99,QmImageCID_Placeholder,QmCertCID_Placeholder,0.0616,Active
