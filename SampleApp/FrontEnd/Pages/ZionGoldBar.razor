@@ -1,0 +1,160 @@
+@page "/zion-gold-bar"
+@using FrontEnd.Data
+@inject ZionGoldBarClient ZionClient
+
+<PageTitle>Zion Gold Bar - Saturn Strata</PageTitle>
+
+<h1>🪙 ZION GOLD BAR CLASSIFICATION - SATURN STRATA ⚜️</h1>
+
+<p>The Afro Elohim–Saturn Vaults: Currency as Cosmic Law + Mineral Memory</p>
+
+@if (saturnResources == null)
+{
+    <p><em>Loading Saturn resources...</em></p>
+}
+else
+{
+    <div class="saturn-vault">
+        <h3>Saturn-Tier Metals & Resources</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Layer</th>
+                    <th>Symbol</th>
+                    <th>Resource</th>
+                    <th>Function</th>
+                    <th>Sectoral Use</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var resource in saturnResources)
+                {
+                    <tr>
+                        <td>@resource.Layer</td>
+                        <td>@resource.Symbol</td>
+                        <td>@resource.Resource</td>
+                        <td>@resource.Function</td>
+                        <td>@resource.SectoralUse</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="actions-section">
+        <h3>Actions</h3>
+        
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">📄 Generate BLEU Certificate</h5>
+                    <p class="card-text">Create a PDF certificate for Zion Gold Bar.</p>
+                    <div class="form-group">
+                        <label>Issued To:</label>
+                        <input type="text" @bind="certificateRecipient" class="form-control" placeholder="Enter name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Value ($):</label>
+                        <input type="number" @bind="certificateValue" class="form-control" placeholder="Enter value" />
+                    </div>
+                    <button class="btn btn-primary" @onclick="GenerateCertificate">Generate Certificate PDF</button>
+                    @if (!string.IsNullOrEmpty(certificateMessage))
+                    {
+                        <p class="alert alert-info mt-2">@certificateMessage</p>
+                    }
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">🪙 Mint ENFT Token</h5>
+                    <p class="card-text">Create an Enhanced NFT Codex entry.</p>
+                    <div class="form-group">
+                        <label>Layer:</label>
+                        <select @bind="selectedLayer" class="form-control">
+                            @foreach (var resource in saturnResources)
+                            {
+                                <option value="@resource.Layer">@resource.Layer</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Memorial Site:</label>
+                        <input type="text" @bind="memorialSite" class="form-control" placeholder="Enter memorial site" />
+                    </div>
+                    <div class="form-group">
+                        <label>Ancestral Lineage:</label>
+                        <input type="text" @bind="ancestralLineage" class="form-control" placeholder="Enter lineage" />
+                    </div>
+                    <button class="btn btn-success" @onclick="MintEnft">Mint ENFT</button>
+                    @if (mintedToken != null)
+                    {
+                        <div class="alert alert-success mt-2">
+                            <p><strong>Token Minted!</strong></p>
+                            <p><small>Token ID: @mintedToken.TokenId</small></p>
+                            <p><small>Hash: @mintedToken.HashSignature</small></p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private SaturnResource[]? saturnResources;
+    private string certificateRecipient = "";
+    private decimal certificateValue = 1000;
+    private string certificateMessage = "";
+    
+    private string selectedLayer = "";
+    private string memorialSite = "";
+    private string ancestralLineage = "";
+    private EnftCodexEntry? mintedToken;
+
+    protected override async Task OnInitializedAsync()
+    {
+        saturnResources = await ZionClient.GetSaturnResourcesAsync();
+        if (saturnResources?.Length > 0)
+        {
+            selectedLayer = saturnResources[0].Layer;
+        }
+    }
+
+    private async Task GenerateCertificate()
+    {
+        if (string.IsNullOrWhiteSpace(certificateRecipient))
+        {
+            certificateMessage = "Please enter a recipient name.";
+            return;
+        }
+
+        try
+        {
+            var pdfUrl = await ZionClient.GenerateCertificateAsync(certificateRecipient, certificateValue);
+            certificateMessage = $"Certificate generated for {certificateRecipient}! Click here to download: {pdfUrl}";
+        }
+        catch (Exception ex)
+        {
+            certificateMessage = $"Error: {ex.Message}";
+        }
+    }
+
+    private async Task MintEnft()
+    {
+        if (string.IsNullOrWhiteSpace(memorialSite) || string.IsNullOrWhiteSpace(ancestralLineage))
+        {
+            return;
+        }
+
+        try
+        {
+            mintedToken = await ZionClient.MintEnftAsync(selectedLayer, memorialSite, ancestralLineage);
+        }
+        catch (Exception ex)
+        {
+            // Handle error
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.OpenApi;
 using Scalar.AspNetCore;
+using BackEnd.Services;
 using BackEnd.Services.BLEU;
 using BackEnd.Models.BLEU;
 
@@ -18,6 +19,9 @@ builder.Services.AddOpenApi(options =>
     });
 });
 
+// Add Zion Gold Bar services
+builder.Services.AddSingleton<SaturnResourceService>();
+builder.Services.AddSingleton<PdfCertificateService>();
 // Register BLEU Flame services
 builder.Services.AddSingleton<BLEUFlameService>();
 builder.Services.AddSingleton<MetaVaultService>();
@@ -53,6 +57,30 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast");
 
+// Zion Gold Bar API Endpoints
+app.MapGet("/saturn-resources", (SaturnResourceService service) =>
+{
+    return Results.Ok(service.GetAllSaturnResources());
+})
+.WithName("GetSaturnResources")
+.WithDescription("Get all Saturn Strata resources in the Zion Gold Bar classification system");
+
+app.MapPost("/certificate/generate", (SaturnResourceService service, PdfCertificateService pdfService, string issuedTo, decimal value) =>
+{
+    var certificate = service.GenerateCertificate(issuedTo, value);
+    var pdfBytes = pdfService.GenerateCertificatePdf(certificate);
+    return Results.File(pdfBytes, "application/pdf", $"ZionGoldBar-{certificate.CertificateId}.pdf");
+})
+.WithName("GenerateCertificate")
+.WithDescription("Generate a BLEU Vault Gold Bar Certificate PDF");
+
+app.MapPost("/enft/mint", (SaturnResourceService service, string layer, string memorialSite, string ancestralLineage) =>
+{
+    var enftToken = service.MintEnftToken(layer, memorialSite, ancestralLineage);
+    return Results.Ok(enftToken);
+})
+.WithName("MintEnftToken")
+.WithDescription("Mint a new ENFT (Enhanced NFT) Codex entry for Zion Gold Bars");
 // BLEU Flame™ API Endpoints
 
 // Get collection metadata
