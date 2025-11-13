@@ -4,7 +4,10 @@ Want to try out the latest performance improvements coming with .NET for web dev
 
 This repo builds a Weather API, OpenAPI integration to test with [Scalar](https://learn.microsoft.com/aspnet/core/fundamentals/openapi/using-openapi-documents?view=aspnetcore-9.0#use-scalar-for-interactive-api-documentation), and displays the data in a web application using Blazor with .NET. 
 
+**NEW: ⏱️ EV0LVerse Armageddon Ledger** - Complete war chest inventory of all EV0LVerse products, services, and their monetary worth across nine major categories, totaling over $8 trillion in countable value. [View Full Ledger](EVOLVERSE_ARMAGEDDON_LEDGER.md)
+
 **NEW: 🪙 Zion Gold Bar Classification System** - This repository now includes the Saturn Strata classification system with PDF certificate generation, ENFT token minting, and interactive visualization. [Read more](ZION_GOLD_BAR.md)
+
 **NEW**: This repository now includes the **BLEU Flame™ Market Tier** and **Zion Gold Bar Protocol** - advanced ENFT (Enhanced Non-Fungible Token) systems integrated with blockchain technology, featuring Saturn-Strata resource classification, MetaVault yield generation, and cross-sector income routing.
 
 We've given you both a frontend and backend to play around with and where you go from here is up to you!
@@ -39,6 +42,25 @@ You can also run this repository locally by following these instructions:
 5. To stop running, return to VS Code, and click Stop twice in the debug toolbar. 
 
 ![VS Code stop debuggin on both backend and frontend](images/StopRun.png)
+
+## ⏱️ EV0LVerse Armageddon Ledger
+
+**Complete War Chest Inventory** of all EV0LVerse products, services, and their monetary worth:
+
+**Total Value**: Over **$8 trillion** in countable wealth + infinite spiritual/lineage value
+
+### Nine Major Categories:
+1. 🍏 **Agriculture and Food** ($60B) - ES0IL, EL0V8 drinks, detox restaurants
+2. 🏥 **EV0LCare Health** ($14.5B) - Smart pacifiers, monitors, neuro-sensory formulas
+3. ⚡ **Energy and Power** ($7T) - EV0LClock, biological upgrades, ES0IL grids
+4. 🏈 **Sports and Recreation** ($28B) - BLEU LIONS, Formula One, MMA, holographic arenas
+5. 🎬 **Media and Culture** ($155B) - Studios, comedy, concerts, Mirror Market avatars
+6. 🏡 **Housing** ($300B) - RE:GENERATION domes, EV0L SUPERPARK
+7. 💻 **Technology** ($110B) - EV0L Shades, Watch G1, VoiceVerse app
+8. ⚖️ **Law and Governance** ($500B+) - Lamb's Court, Penal Jailbreak
+9. 🔥 **Warfare of Armageddon** (Trillions+) - Headhunters Mode, Dragon Sentencing, Flame Crown
+
+**Full Documentation**: [EVOLVERSE_ARMAGEDDON_LEDGER.md](EVOLVERSE_ARMAGEDDON_LEDGER.md)
 
 ## BLEU Flame™ & Zion Gold Bar Protocol
 
