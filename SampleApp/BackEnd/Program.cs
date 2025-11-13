@@ -2,7 +2,11 @@ using Microsoft.AspNetCore.OpenApi;
 using Scalar.AspNetCore;
 using BackEnd.Services;
 using BackEnd.Services.BLEU;
+using BackEnd.Services.ES0IL;
+using BackEnd.Services.MetaSchools;
 using BackEnd.Models.BLEU;
+using BackEnd.Models.ES0IL;
+using BackEnd.Models.MetaSchools;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +30,11 @@ builder.Services.AddSingleton<PdfCertificateService>();
 builder.Services.AddSingleton<BLEUFlameService>();
 builder.Services.AddSingleton<MetaVaultService>();
 builder.Services.AddSingleton<ZionGoldBarService>();
+// Register ES0IL and MetaSchools services
+builder.Services.AddSingleton<ES0ILService>();
+builder.Services.AddSingleton<MetaSchoolsService>();
+// Register Unified Economic Ledger
+builder.Services.AddSingleton<UnifiedEconomicLedgerService>();
 
 var app = builder.Build();
 
@@ -339,6 +348,283 @@ app.MapPut("/zion/update-cids", async (ZionGoldBarService service, string tokenI
 })
 .WithName("UpdateZionCIDs")
 .WithTags("Zion Gold Bar");
+
+// ========== ES0IL Smart Forestry & Agriculture API Endpoints ==========
+
+// Get all ES0IL modules
+app.MapGet("/es0il/modules", async (ES0ILService service) =>
+{
+    var modules = await service.GetAllModules();
+    return Results.Ok(modules);
+})
+.WithName("GetES0ILModules")
+.WithTags("ES0IL");
+
+// Get ES0IL module by ID
+app.MapGet("/es0il/module/{moduleId}", async (ES0ILService service, string moduleId) =>
+{
+    var module = await service.GetModule(moduleId);
+    return module != null ? Results.Ok(module) : Results.NotFound();
+})
+.WithName("GetES0ILModule")
+.WithTags("ES0IL");
+
+// Deploy a new ES0IL module
+app.MapPost("/es0il/deploy", async (ES0ILService service, ES0ILLocation location, string primaryCrop) =>
+{
+    var module = await service.DeployModule(location, primaryCrop);
+    return Results.Ok(module);
+})
+.WithName("DeployES0ILModule")
+.WithTags("ES0IL");
+
+// Activate an ES0IL module
+app.MapPost("/es0il/activate/{moduleId}", async (ES0ILService service, string moduleId) =>
+{
+    try
+    {
+        var module = await service.ActivateModule(moduleId);
+        return Results.Ok(module);
+    }
+    catch (KeyNotFoundException)
+    {
+        return Results.NotFound();
+    }
+})
+.WithName("ActivateES0ILModule")
+.WithTags("ES0IL");
+
+// Register forestry resource
+app.MapPost("/es0il/forestry/register", async (ES0ILService service, string species, int age, double carbonCapture, bool es0ilIntegration) =>
+{
+    var resource = await service.RegisterForestryResource(species, age, carbonCapture, es0ilIntegration);
+    return Results.Ok(resource);
+})
+.WithName("RegisterForestryResource")
+.WithTags("ES0IL");
+
+// Get all forestry resources
+app.MapGet("/es0il/forestry", async (ES0ILService service) =>
+{
+    var resources = await service.GetForestryResources();
+    return Results.Ok(resources);
+})
+.WithName("GetForestryResources")
+.WithTags("ES0IL");
+
+// Get ES0IL statistics
+app.MapGet("/es0il/stats", async (ES0ILService service) =>
+{
+    var stats = await service.GetStatistics();
+    return Results.Ok(stats);
+})
+.WithName("GetES0ILStatistics")
+.WithTags("ES0IL");
+
+// Get ES0IL ledger
+app.MapGet("/es0il/ledger", async (ES0ILService service, string? moduleId) =>
+{
+    var ledger = await service.GetLedger(moduleId);
+    return Results.Ok(ledger);
+})
+.WithName("GetES0ILLedger")
+.WithTags("ES0IL");
+
+// Calculate ecosystem value
+app.MapGet("/es0il/ecosystem-value", async (ES0ILService service) =>
+{
+    var value = await service.CalculateEcosystemValue();
+    return Results.Ok(new { totalEcosystemValue = value });
+})
+.WithName("CalculateEcosystemValue")
+.WithTags("ES0IL");
+
+// ========== MetaSchools API Endpoints ==========
+
+// Enroll a student
+app.MapPost("/metaschools/enroll", async (MetaSchoolsService service, string name, AgeGroup ageGroup) =>
+{
+    var student = await service.EnrollStudent(name, ageGroup);
+    return Results.Ok(student);
+})
+.WithName("EnrollStudent")
+.WithTags("MetaSchools");
+
+// Get all students
+app.MapGet("/metaschools/students", async (MetaSchoolsService service) =>
+{
+    var students = await service.GetAllStudents();
+    return Results.Ok(students);
+})
+.WithName("GetAllStudents")
+.WithTags("MetaSchools");
+
+// Get student by ID
+app.MapGet("/metaschools/student/{studentId}", async (MetaSchoolsService service, string studentId) =>
+{
+    var student = await service.GetStudent(studentId);
+    return student != null ? Results.Ok(student) : Results.NotFound();
+})
+.WithName("GetStudent")
+.WithTags("MetaSchools");
+
+// Get students by age group
+app.MapGet("/metaschools/students/age/{ageGroup}", async (MetaSchoolsService service, AgeGroup ageGroup) =>
+{
+    var students = await service.GetStudentsByAgeGroup(ageGroup);
+    return Results.Ok(students);
+})
+.WithName("GetStudentsByAgeGroup")
+.WithTags("MetaSchools");
+
+// Progress a student
+app.MapPost("/metaschools/progress/{studentId}", async (MetaSchoolsService service, string studentId, double masteryLevel) =>
+{
+    try
+    {
+        var student = await service.ProgressStudent(studentId, masteryLevel);
+        return Results.Ok(student);
+    }
+    catch (KeyNotFoundException)
+    {
+        return Results.NotFound();
+    }
+})
+.WithName("ProgressStudent")
+.WithTags("MetaSchools");
+
+// Record teaching session
+app.MapPost("/metaschools/teach", async (MetaSchoolsService service, string teacherId, List<string> studentIds, string moduleId, double effectiveness) =>
+{
+    try
+    {
+        var session = await service.RecordTeachingSession(teacherId, studentIds, moduleId, effectiveness);
+        return Results.Ok(session);
+    }
+    catch (KeyNotFoundException ex)
+    {
+        return Results.BadRequest(new { error = ex.Message });
+    }
+})
+.WithName("RecordTeachingSession")
+.WithTags("MetaSchools");
+
+// Get curriculum
+app.MapGet("/metaschools/curriculum", async (MetaSchoolsService service) =>
+{
+    var curriculum = await service.GetCurriculum();
+    return Results.Ok(curriculum);
+})
+.WithName("GetCurriculum")
+.WithTags("MetaSchools");
+
+// Get curriculum for age group
+app.MapGet("/metaschools/curriculum/age/{ageGroup}", async (MetaSchoolsService service, AgeGroup ageGroup) =>
+{
+    var curriculum = await service.GetCurriculumForAgeGroup(ageGroup);
+    return Results.Ok(curriculum);
+})
+.WithName("GetCurriculumForAgeGroup")
+.WithTags("MetaSchools");
+
+// Get MetaSchools statistics
+app.MapGet("/metaschools/stats", async (MetaSchoolsService service) =>
+{
+    var stats = await service.GetStatistics();
+    return Results.Ok(stats);
+})
+.WithName("GetMetaSchoolsStatistics")
+.WithTags("MetaSchools");
+
+// Get student progression report
+app.MapGet("/metaschools/progress-report/{studentId}", async (MetaSchoolsService service, string studentId) =>
+{
+    try
+    {
+        var report = await service.GetProgressionReport(studentId);
+        return Results.Ok(report);
+    }
+    catch (KeyNotFoundException)
+    {
+        return Results.NotFound();
+    }
+})
+.WithName("GetProgressionReport")
+.WithTags("MetaSchools");
+
+// ========== Unified Economic Ledger API Endpoints ==========
+
+// Record a transaction
+app.MapPost("/ledger/record", async (UnifiedEconomicLedgerService service, string system, string operation, string entityId, decimal value, Dictionary<string, object>? metadata) =>
+{
+    var transaction = await service.RecordTransaction(system, operation, entityId, value, metadata);
+    return Results.Ok(transaction);
+})
+.WithName("RecordTransaction")
+.WithTags("Unified Ledger");
+
+// Get all transactions
+app.MapGet("/ledger/transactions", async (UnifiedEconomicLedgerService service) =>
+{
+    var transactions = await service.GetAllTransactions();
+    return Results.Ok(transactions);
+})
+.WithName("GetAllTransactions")
+.WithTags("Unified Ledger");
+
+// Get transactions by system
+app.MapGet("/ledger/transactions/system/{system}", async (UnifiedEconomicLedgerService service, string system) =>
+{
+    var transactions = await service.GetTransactionsBySystem(system);
+    return Results.Ok(transactions);
+})
+.WithName("GetTransactionsBySystem")
+.WithTags("Unified Ledger");
+
+// Get transactions by entity
+app.MapGet("/ledger/transactions/entity/{entityId}", async (UnifiedEconomicLedgerService service, string entityId) =>
+{
+    var transactions = await service.GetTransactionsByEntity(entityId);
+    return Results.Ok(transactions);
+})
+.WithName("GetTransactionsByEntity")
+.WithTags("Unified Ledger");
+
+// Get ledger statistics
+app.MapGet("/ledger/stats", async (UnifiedEconomicLedgerService service) =>
+{
+    var stats = await service.GetStatistics();
+    return Results.Ok(stats);
+})
+.WithName("GetLedgerStatistics")
+.WithTags("Unified Ledger");
+
+// Verify transaction
+app.MapGet("/ledger/verify/{transactionId}", async (UnifiedEconomicLedgerService service, string transactionId) =>
+{
+    var isValid = await service.VerifyTransaction(transactionId);
+    return Results.Ok(new { transactionId, isValid });
+})
+.WithName("VerifyTransaction")
+.WithTags("Unified Ledger");
+
+// Get total ecosystem value
+app.MapGet("/ledger/ecosystem-value", async (UnifiedEconomicLedgerService service) =>
+{
+    var value = await service.GetTotalEcosystemValue();
+    return Results.Ok(value);
+})
+.WithName("GetTotalEcosystemValue")
+.WithTags("Unified Ledger");
+
+// Export ledger to CSV
+app.MapGet("/ledger/export/csv", async (UnifiedEconomicLedgerService service) =>
+{
+    var csv = await service.ExportToCSV();
+    return Results.Text(csv, "text/csv");
+})
+.WithName("ExportLedgerCSV")
+.WithTags("Unified Ledger");
 
 app.Run();
 
