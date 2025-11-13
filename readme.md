@@ -4,6 +4,8 @@ Want to try out the latest performance improvements coming with .NET for web dev
 
 This repo builds a Weather API, OpenAPI integration to test with [Scalar](https://learn.microsoft.com/aspnet/core/fundamentals/openapi/using-openapi-documents?view=aspnetcore-9.0#use-scalar-for-interactive-api-documentation), and displays the data in a web application using Blazor with .NET. 
 
+**NEW: 🌟 Main EV0LVerse Repo Structure** - Unified structure for investors and builders featuring Ant Ethic Motors, Quaocta-Dimensional Scaling, Kids First Model, and the complete Codex System Logic for developers. [Read Main Structure](MAIN_EVOLVERSE_REPO_STRUCTURE.md) | [Developer Codex](CODEX_SYSTEM_LOGIC.md) | [Validation Tests](SCALE_VALIDATION_TEST_OUTPUTS.md)
+
 **NEW: ⏱️ EV0LVerse Armageddon Ledger** - Complete war chest inventory of all EV0LVerse products, services, and their monetary worth across nine major categories, totaling over $8 trillion in countable value. [View Full Ledger](EVOLVERSE_ARMAGEDDON_LEDGER.md)
 
 **NEW: 🪙 Zion Gold Bar Classification System** - This repository now includes the Saturn Strata classification system with PDF certificate generation, ENFT token minting, and interactive visualization. [Read more](ZION_GOLD_BAR.md)
@@ -42,6 +44,42 @@ You can also run this repository locally by following these instructions:
 5. To stop running, return to VS Code, and click Stop twice in the debug toolbar. 
 
 ![VS Code stop debuggin on both backend and frontend](images/StopRun.png)
+
+## 🌟 Main EV0LVerse Repo Structure
+
+**Unified Structure for Investors and Builders**
+
+This repository now includes comprehensive documentation for both investors and developers:
+
+### 📊 For Investors and Builders
+Explore the complete investment framework featuring:
+- **🐜 Ant Ethic Motors**: Zero idle waste, energy recycling systems (ROI: 40-60% cost reduction)
+- **📐 Quaocta-Dimensional Scaling**: 8-dimensional mathematical framework with proven scaling logic
+- **👶 Kids First Model**: Education and prayer-output-based development ($14.5B investment tier)
+- **💰 Investment Tiers**: From PublicDrop ($1K+) to GodTier ($1M+) with 12-25% annual yields
+
+**[📖 Read Full Structure →](MAIN_EVOLVERSE_REPO_STRUCTURE.md)**
+
+### 🔧 For Developers
+Complete Codex system integration guide including:
+- **Totemic Motors**: Modular energy processing units with totem-based behavior
+- **Tasmanian Spin Logic**: Chaos-based optimization algorithm
+- **Vampire Variables**: Memory-efficient constructs preventing idle waste
+- **Overscale Phases**: Scale 1-1200 with Green/Amber/Red/Transcendent phases
+- **SORA_BRAID Hidden Laws**: Quantum-level coordination (activates at scale 1200)
+
+**[⚙️ View Developer Codex →](CODEX_SYSTEM_LOGIC.md)**
+
+### ✅ Validation & Testing
+Environment integrity validated with scale testing:
+- **Projected Scale**: 1120 (Green Zone - Operational)
+- **Breaking Scale**: 1200 (Transcendent - Infinite efficiency)
+- **SORADrivers**: Finalized mapping complete
+- **All Tests**: 8/8 Passing
+
+**[🧪 View Test Results →](SCALE_VALIDATION_TEST_OUTPUTS.md)**
+
+---
 
 ## ⏱️ EV0LVerse Armageddon Ledger
 
