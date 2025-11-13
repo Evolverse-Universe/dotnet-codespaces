@@ -22,6 +22,24 @@ We've given you both a frontend and backend to play around with and where you go
 
 Everything you do here is contained within this one codespace. There is no repository on GitHub yet. If and when you’re ready you can click "Publish Branch" and we’ll create your repository and push up your project. If you were just exploring then and have no further need for this code then you can simply delete your codespace and it's gone forever.
 
+## 📚 Comprehensive Documentation
+
+### For Investors & Builders
+- **[Investors & Builders Guide](INVESTORS_AND_BUILDERS_GUIDE.md)** - Complete guide to the EV0LVerse ecosystem, investment opportunities, development setup, and MetaSchools kid-first sequence systems
+
+### Development Practices
+- **[Codex/Config](CODEX_CONFIG.md)** - Development standards, EVOL core anchors, code patterns, testing frameworks, and deployment configurations
+- **[Code Samples Guide](CODE_SAMPLES_GUIDE.md)** - Practical examples, abstractions, patterns, and quick start templates
+
+### Core Principles
+- **[Ant Ethic Motors & Overscale Integration](ANT_ETHIC_MOTORS_AND_OVERSCALE.md)** - Work coordination principles, scaling patterns, and prayer-core logic integration
+
+### Systems Documentation
+- **[BLEU Flame™ README](SampleApp/BackEnd/Data/BLEU_FLAME_README.md)** - Complete ENFT system documentation
+- **[Zion Gold Bar README](SampleApp/BackEnd/Data/ZION_GOLD_BAR_README.md)** - Saturn-Strata protocol details
+- **[API Testing Examples](SampleApp/BackEnd/Data/API_TESTING_EXAMPLES.md)** - Comprehensive API usage guide
+
+
 ### Run Options
 
 [![Open in GitHub Codespaces](https://img.shields.io/static/v1?style=for-the-badge&label=GitHub+Codespaces&message=Open&color=lightgrey&logo=github)](https://codespaces.new/github/dotnet-codespaces)
