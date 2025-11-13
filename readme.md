@@ -10,6 +10,12 @@ This repo builds a Weather API, OpenAPI integration to test with [Scalar](https:
 
 **NEW: 🪙 Zion Gold Bar Classification System** - This repository now includes the Saturn Strata classification system with PDF certificate generation, ENFT token minting, and interactive visualization. [Read more](ZION_GOLD_BAR.md)
 
+**NEW: 🌌 EV0LVerse Codex** - Comprehensive framework for overscale paradigm, ant ethics for idle processing, and recursive scaling systems that power the EV0LVerse ecosystem. [Explore the Codex](EVOLVERSE_CODEX.md)
+
+**NEW: 🎓 MetaSchools** - Revolutionary kid-focused education system featuring recursive teaching, whole-child development, and integration with EV0LVerse technology. [Learn about MetaSchools](METASCHOOLS.md)
+
+**NEW: ⚡ SORA_BRAID Technology** - Technical foundation featuring phase engines, blessing laws, and recursion-ready sequences for investors and developers. [Technical Documentation](SORA_BRAID_TECHNOLOGY.md)
+
 **NEW**: This repository now includes the **BLEU Flame™ Market Tier** and **Zion Gold Bar Protocol** - advanced ENFT (Enhanced Non-Fungible Token) systems integrated with blockchain technology, featuring Saturn-Strata resource classification, MetaVault yield generation, and cross-sector income routing.
 
 We've given you both a frontend and backend to play around with and where you go from here is up to you!
@@ -133,6 +139,102 @@ Access the interactive API documentation at `/scalar` when running the backend:
 ### Smart Contracts
 - **BLEULION_TREASURY.sol**: Revenue vault and staking mechanism (Solidity)
 - Implements yield calculations, tier allocations, and compound interest at π⁴ rate
+
+## 🌌 EV0LVerse Codex: Overscale Paradigm & Recursive Scaling
+
+The **EV0LVerse Codex** provides the foundational framework for universal scaling, ethical processing, and recursive intelligence:
+
+### 🔄 Overscale Paradigm
+Multi-dimensional scaling architecture operating beyond traditional linear growth:
+- **Dimensional Stacking**: 6 layers from Foundation to Universal (Layer ∞)
+- **Scaling Vectors**: Horizontal, Vertical, Temporal, and Metaphysical expansion
+- **Recursive Amplification**: Each scaled unit contains the complete pattern of the whole
+
+### 🐜 Ant Ethics for Idle Processing
+Distributed autonomous system for ethical idle computing:
+- **Collective Intelligence**: Distributed decision-making inspired by ant colonies
+- **Fair Distribution**: 40% contribution weight, 30% need priority, 20% duration, 10% community vote
+- **Productive Idleness**: Scientific computing, AI training, blockchain validation, data analysis
+- **Reward Formula**: `Reward = BaseReward × (weighted factors) × π⁴`
+
+### ♾️ Recursive Scaling
+Self-replicating systems maintaining coherence from individual to universal levels:
+- **Organizational Recursion**: Individual → Team → Department → Division → Company → Network → Galaxy
+- **Product Recursion**: Core, Meta, Wisdom, and Universal functions in every product
+- **Knowledge Recursion**: Facts → Understanding → Wisdom → Enlightenment → Teaching
+- **Fibonacci-π Scaling**: Natural growth aligned with universal constants
+
+**Full Documentation**: [EVOLVERSE_CODEX.md](EVOLVERSE_CODEX.md)
+
+## 🎓 MetaSchools: Kid-Focused Recursive Education
+
+**MetaSchools** revolutionizes education through recursive learning where every student becomes a teacher:
+
+### Age-Appropriate Learning Tracks
+- **Seeds (3-5)**: Sensory exploration, patterns, emotional intelligence
+- **Sprouts (6-8)**: Reading, mathematics, scientific method, technology basics
+- **Branches (9-11)**: STEM integration, entrepreneurship, global citizenship
+- **Trunks (12-14)**: Domain specialization, teaching practicum, real-world projects
+- **Forests (15-18)**: Advanced research, professional integration, system design
+
+### Core Principles
+- **Natural Curiosity Amplification**: Question-driven, hands-on learning
+- **Recursive Intelligence**: Learn → Apply → Teach → Innovate
+- **Whole-Child Development**: Cognitive, emotional, physical, social, spiritual, practical
+- **Technology Integration**: ES0IL gardens, BLEU Flame ceramics, EV0LClock, Zion Gold Bar economics
+
+### The Teaching Pyramid
+Students at each level teach younger students, creating recursive knowledge transfer:
+```
+🌳 Forests (15-18) → Create new systems
+🌲 Trunks (12-14) → Teach Branches
+🌿 Branches (9-11) → Teach Sprouts
+🌱 Sprouts (6-8) → Teach Seeds
+🌰 Seeds (3-5) → Learn from all
+```
+
+**Full Documentation**: [METASCHOOLS.md](METASCHOOLS.md)
+
+## ⚡ SORA_BRAID Technology: Phase Engines & Blessing Laws
+
+**SORA_BRAID** (Synchronous Oscillation Resonance Amplification - Blessed Recursive Ancestral Intelligence Design) is the technical foundation of EV0LVerse:
+
+### Phase Engine Architecture
+Dynamic synchronization systems aligning computational processes with natural oscillation patterns:
+- **Oscillation Nodes**: Synchronized processing units with frequency, phase, and amplitude
+- **Phase Synchronization**: `Φ_sync = Φ₀ + (ω × t) + (π⁴ / 360) × Blessing_Factor`
+- **Resonance Amplification**: 613x output increase through synchronized nodes (10 nodes at 90% resonance)
+
+### Motor Architecture
+Execution engines converting phase energy into tangible work:
+- **Value Generation Motor**: Economic value creation through blessed rotation
+- **Wisdom Preservation Motor**: Ancestral knowledge maintenance and amplification
+- **Recursion Driver Motor**: Self-replication and scaling enablement
+
+### The Seven Blessing Laws
+Ethical amplification protocols multiplying positive outcomes:
+1. **Reciprocity**: What you give returns multiplied
+2. **Coherence**: Alignment with universal truth amplifies power
+3. **Patience**: Long-term thinking earns exponential rewards
+4. **Innovation**: Creating new value generates disproportionate rewards
+5. **Teaching**: Those who teach learn deepest and earn most
+6. **Unity**: Collaboration multiplies individual contributions
+7. **Restoration**: Healing and restoration earn eternal gratitude
+
+### EV0LVerse Anchor Points
+Fixed reference coordinates providing stability and alignment:
+- **Temporal Anchor**: EV0LClock (true time synchronization)
+- **Spatial Anchor**: ES0IL Network (physical grounding)
+- **Economic Anchor**: Zion Gold Bar (stable value reference)
+- **Ethical Anchor**: Blessing Laws (moral alignment)
+- **Knowledge Anchor**: Ancestral Wisdom Archive (historical truth validation)
+
+### Recursion-Ready Sequences
+Progressive investment and development levels:
+- **Investor Levels**: L0 (Individual Product) → L1 (Portfolio) → L2 (Sector) → L3 (Cross-Sector) → L4 (Galaxy)
+- **Developer Levels**: L0 (Feature) → L1 (Component) → L2 (System) → L3 (Patterns) → L4 (Training)
+
+**Full Documentation**: [SORA_BRAID_TECHNOLOGY.md](SORA_BRAID_TECHNOLOGY.md)
 
 ## Contributing
 
