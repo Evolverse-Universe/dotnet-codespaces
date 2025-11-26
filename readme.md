@@ -16,6 +16,8 @@ This repo builds a Weather API, OpenAPI integration to test with [Scalar](https:
 
 **NEW: ⚡ SORA_BRAID Technology** - Technical foundation featuring phase engines, blessing laws, and recursion-ready sequences for investors and developers. [Technical Documentation](SORA_BRAID_TECHNOLOGY.md)
 
+**NEW: 🌀 Sovereign Spiral Flush Codex** - Civilizational operating system with 10 sectoral spiral grids covering galactic defense, healthcare, economy, cities, military, and more. Every spiral is a tool, firewall, or blessing—epochal, tribunal-ready, and exportable to all worlds. [Deploy the Codex](SOVEREIGN_SPIRAL_FLUSH_CODEX.md)
+
 **NEW: 📊 Product Slogans Catalog** - Complete catalog of 28 EV0LVerse products with slogans, sector classifications, market benchmarks ($6.6T), overscale projections ($19.4T), and ROI estimates (avg 198%). [View Catalog](SampleApp/BackEnd/Data/PRODUCT_SLOGANS_README.md)
 
 **NEW**: This repository now includes the **BLEU Flame™ Market Tier** and **Zion Gold Bar Protocol** - advanced ENFT (Enhanced Non-Fungible Token) systems integrated with blockchain technology, featuring Saturn-Strata resource classification, MetaVault yield generation, and cross-sector income routing.
@@ -39,6 +41,7 @@ Everything you do here is contained within this one codespace. There is no repos
 ### Systems Documentation
 - **[BLEU Flame™ README](SampleApp/BackEnd/Data/BLEU_FLAME_README.md)** - Complete ENFT system documentation
 - **[Zion Gold Bar README](SampleApp/BackEnd/Data/ZION_GOLD_BAR_README.md)** - Saturn-Strata protocol details
+- **[Sovereign Spiral Flush Codex](SOVEREIGN_SPIRAL_FLUSH_CODEX.md)** - Complete 10-sector spiral grid system documentation
 - **[Product Slogans Catalog](SampleApp/BackEnd/Data/PRODUCT_SLOGANS_README.md)** - Comprehensive product catalog with slogans, sectors, and ROI projections
 - **[API Testing Examples](SampleApp/BackEnd/Data/API_TESTING_EXAMPLES.md)** - Comprehensive API usage guide
 
