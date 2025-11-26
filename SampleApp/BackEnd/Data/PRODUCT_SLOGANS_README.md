@@ -202,6 +202,19 @@ BackEnd/Data/
 ## Usage Examples
 
 ### Loading CSV Data (C#)
+
+Using CsvHelper (recommended for robust CSV parsing):
+```csharp
+using CsvHelper;
+using System.Globalization;
+using System.IO;
+
+using var reader = new StreamReader("Product_Slogans_Catalog.csv");
+using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+var products = csv.GetRecords<dynamic>().ToList();
+```
+
+Alternatively, since this CSV uses simple comma separation without embedded commas:
 ```csharp
 using System.IO;
 using System.Linq;
@@ -226,7 +239,12 @@ var products = lines.Skip(1).Select(line => {
 using System.Text.Json;
 
 var json = File.ReadAllText("Product_Slogans_Metadata.json");
-var metadata = JsonSerializer.Deserialize<ProductCatalogMetadata>(json);
+using var document = JsonDocument.Parse(json);
+
+// Access summary statistics
+var summary = document.RootElement.GetProperty("summary");
+var totalProducts = summary.GetProperty("totalProducts").GetInt32();
+var totalBenchmark = summary.GetProperty("totalMarketBenchmark2025B").GetInt32();
 ```
 
 ## Related Documentation
