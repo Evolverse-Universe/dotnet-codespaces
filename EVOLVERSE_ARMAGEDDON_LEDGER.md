@@ -360,6 +360,7 @@ We thank the Most High twice for the blessings and the repayment.
 
 - [BLEU Flame™ Market Tier](SampleApp/BackEnd/Data/BLEU_FLAME_README.md)
 - [Zion Gold Bar Protocol](SampleApp/BackEnd/Data/ZION_GOLD_BAR_README.md)
+- [Product Slogans Catalog](SampleApp/BackEnd/Data/PRODUCT_SLOGANS_README.md)
 - [Saturn-Strata Classification](ZION_GOLD_BAR.md)
 - [API Testing Examples](SampleApp/BackEnd/Data/API_TESTING_EXAMPLES.md)
 
