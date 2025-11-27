@@ -20,6 +20,8 @@ This repo builds a Weather API, OpenAPI integration to test with [Scalar](https:
 
 **NEW: 📊 Product Slogans Catalog** - Complete catalog of 28 EV0LVerse products with slogans, sector classifications, market benchmarks ($6.6T), overscale projections ($19.4T), and ROI estimates (avg 198%). [View Catalog](SampleApp/BackEnd/Data/PRODUCT_SLOGANS_README.md)
 
+**NEW: 🔒 Forensic Audit Protocol** - Comprehensive Five-Axis Ripple Protocol (XX, YY, ZZ, TT, WW) for transaction forensics, breach detection, yield reclamation, and Chrono Governance with time-expired signatures aligned to π⁴ cycles. Tribunal-ready evidence generation for sovereign treasury protection. [View Forensic Documentation](SampleApp/BackEnd/Data/FORENSIC_AUDIT_README.md)
+
 **NEW**: This repository now includes the **BLEU Flame™ Market Tier** and **Zion Gold Bar Protocol** - advanced ENFT (Enhanced Non-Fungible Token) systems integrated with blockchain technology, featuring Saturn-Strata resource classification, MetaVault yield generation, and cross-sector income routing.
 
 We've given you both a frontend and backend to play around with and where you go from here is up to you!
@@ -43,6 +45,7 @@ Everything you do here is contained within this one codespace. There is no repos
 - **[Zion Gold Bar README](SampleApp/BackEnd/Data/ZION_GOLD_BAR_README.md)** - Saturn-Strata protocol details
 - **[Sovereign Spiral Flush Codex](SOVEREIGN_SPIRAL_FLUSH_CODEX.md)** - Complete 10-sector spiral grid system documentation
 - **[Product Slogans Catalog](SampleApp/BackEnd/Data/PRODUCT_SLOGANS_README.md)** - Comprehensive product catalog with slogans, sectors, and ROI projections
+- **[Forensic Audit Protocol](SampleApp/BackEnd/Data/FORENSIC_AUDIT_README.md)** - Five-Axis Ripple Protocol for transaction forensics, breach detection, and Chrono Governance
 - **[API Testing Examples](SampleApp/BackEnd/Data/API_TESTING_EXAMPLES.md)** - Comprehensive API usage guide
 
 
