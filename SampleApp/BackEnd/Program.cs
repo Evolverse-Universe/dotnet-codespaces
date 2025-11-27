@@ -9,6 +9,11 @@ using BackEnd.Models.BLEU;
 using BackEnd.Models.ES0IL;
 using BackEnd.Models.MetaSchools;
 using BackEnd.Models.Forensic;
+using BackEnd.Services.Forensics;
+using BackEnd.Models.BLEU;
+using BackEnd.Models.ES0IL;
+using BackEnd.Models.MetaSchools;
+using BackEnd.Models.Forensics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +45,8 @@ builder.Services.AddSingleton<UnifiedEconomicLedgerService>();
 // Register Forensic Audit and Chrono Governance services
 builder.Services.AddSingleton<ForensicAuditService>();
 builder.Services.AddSingleton<ChronoGovernanceService>();
+// Register Blockchain Forensic Analysis Service
+builder.Services.AddSingleton<ForensicAnalysisService>();
 
 var app = builder.Build();
 
@@ -861,6 +868,151 @@ app.MapPost("/chrono/cleanup", async (ChronoGovernanceService service, int reten
 })
 .WithName("CleanupExpiredSignatures")
 .WithTags("Chrono Governance");
+// ========== Blockchain Forensic Analysis API Endpoints ==========
+
+// Create a new forensic investigation case
+app.MapPost("/forensics/case/create", async (ForensicAnalysisService service, CreateForensicCaseRequest request) =>
+{
+    var forensicCase = await service.CreateCase(request.Title, request.Description, request.Addresses, request.Networks);
+    return Results.Ok(forensicCase);
+})
+.WithName("CreateForensicCase")
+.WithTags("Forensic Analysis")
+.WithDescription("Create a new forensic investigation case for tracking blockchain asset movements");
+
+// Get all forensic cases
+app.MapGet("/forensics/cases", async (ForensicAnalysisService service) =>
+{
+    var cases = await service.GetAllCases();
+    return Results.Ok(cases);
+})
+.WithName("GetAllForensicCases")
+.WithTags("Forensic Analysis");
+
+// Get forensic case by ID
+app.MapGet("/forensics/case/{caseId}", async (ForensicAnalysisService service, string caseId) =>
+{
+    var forensicCase = await service.GetCase(caseId);
+    return forensicCase != null ? Results.Ok(forensicCase) : Results.NotFound();
+})
+.WithName("GetForensicCase")
+.WithTags("Forensic Analysis");
+
+// Record a transaction for forensic analysis
+app.MapPost("/forensics/transaction/record", async (ForensicAnalysisService service, RecordTransactionRequest request) =>
+{
+    var transaction = await service.RecordTransaction(request.TxHash, request.BlockNumber, request.Timestamp, request.Network, request.From, request.To, request.Value, request.MethodName);
+    return Results.Ok(transaction);
+})
+.WithName("RecordForensicTransaction")
+.WithTags("Forensic Analysis")
+.WithDescription("Record a blockchain transaction for forensic tracking and analysis");
+
+// Trace asset flow
+app.MapPost("/forensics/flow/trace", async (ForensicAnalysisService service, TraceAssetFlowRequest request) =>
+{
+    var flow = await service.TraceAssetFlow(request.AssetSymbol, request.AssetContract, request.SourceAddress, request.DestinationAddress, request.Amount, request.SourceNetwork, request.DestinationNetwork, request.TxHash);
+    return Results.Ok(flow);
+})
+.WithName("TraceAssetFlow")
+.WithTags("Forensic Analysis")
+.WithDescription("Trace asset movement from source to destination address across blockchains");
+
+// Get asset flows for a case
+app.MapGet("/forensics/case/{caseId}/flows", async (ForensicAnalysisService service, string caseId) =>
+{
+    var flows = await service.GetAssetFlowsForCase(caseId);
+    return Results.Ok(flows);
+})
+.WithName("GetCaseAssetFlows")
+.WithTags("Forensic Analysis");
+
+// Generate chain of custody
+app.MapGet("/forensics/case/{caseId}/chain-of-custody", async (ForensicAnalysisService service, string caseId) =>
+{
+    var custody = await service.GenerateChainOfCustody(caseId);
+    return Results.Ok(custody);
+})
+.WithName("GenerateChainOfCustody")
+.WithTags("Forensic Analysis")
+.WithDescription("Generate a legal chain of custody provenance trail for a forensic case");
+
+// Generate comprehensive forensic report
+app.MapPost("/forensics/report/generate", async (ForensicAnalysisService service, GenerateReportRequest request) =>
+{
+    try
+    {
+        var report = await service.GenerateForensicReport(request.CaseId, request.PreparedBy);
+        return Results.Ok(report);
+    }
+    catch (KeyNotFoundException)
+    {
+        return Results.NotFound(new { error = $"Case {request.CaseId} not found" });
+    }
+})
+.WithName("GenerateForensicReport")
+.WithTags("Forensic Analysis")
+.WithDescription("Generate a comprehensive forensic report for legal/insurance proceedings");
+
+// Analyze a swap transaction
+app.MapPost("/forensics/swap/analyze", async (ForensicAnalysisService service, AnalyzeSwapRequest request) =>
+{
+    var analysis = await service.AnalyzeSwap(request.TxHash, request.DexName, request.RouterAddress, request.Network, request.TokenIn, request.TokenOut, request.AmountIn, request.AmountOut, request.ExpectedAmountOut, request.SwapMethod);
+    return Results.Ok(analysis);
+})
+.WithName("AnalyzeSwap")
+.WithTags("Forensic Analysis")
+.WithDescription("Analyze a DEX swap transaction for slippage and potential issues");
+
+// Analyze a bridge transaction
+app.MapPost("/forensics/bridge/analyze", async (ForensicAnalysisService service, AnalyzeBridgeRequest request) =>
+{
+    var analysis = await service.AnalyzeBridge(request.BridgeName, request.SourceChain, request.DestinationChain, request.SourceTxHash, request.DestinationTxHash, request.AmountSent, request.AmountReceived);
+    return Results.Ok(analysis);
+})
+.WithName("AnalyzeBridge")
+.WithTags("Forensic Analysis")
+.WithDescription("Analyze a cross-chain bridge transaction for completion status and potential issues");
+
+// Get address analytics
+app.MapGet("/forensics/address/{address}/analytics", async (ForensicAnalysisService service, string address, BlockchainNetwork network) =>
+{
+    var analytics = await service.GetAddressAnalytics(address, network);
+    return Results.Ok(analytics);
+})
+.WithName("GetAddressAnalytics")
+.WithTags("Forensic Analysis")
+.WithDescription("Get forensic analytics profile for a blockchain address");
+
+// Get transactions by address
+app.MapGet("/forensics/address/{address}/transactions", async (ForensicAnalysisService service, string address) =>
+{
+    var transactions = await service.GetTransactionsByAddress(address);
+    return Results.Ok(transactions);
+})
+.WithName("GetTransactionsByAddress")
+.WithTags("Forensic Analysis");
+
+// Export case to CSV
+app.MapGet("/forensics/case/{caseId}/export/csv", async (ForensicAnalysisService service, string caseId) =>
+{
+    var csv = await service.ExportCaseToCSV(caseId);
+    if (string.IsNullOrEmpty(csv))
+        return Results.NotFound();
+    return Results.Text(csv, "text/csv");
+})
+.WithName("ExportCaseToCSV")
+.WithTags("Forensic Analysis")
+.WithDescription("Export case asset flows to CSV for external analysis");
+
+// Get forensic statistics
+app.MapGet("/forensics/stats", async (ForensicAnalysisService service) =>
+{
+    var stats = await service.GetStatistics();
+    return Results.Ok(stats);
+})
+.WithName("GetForensicStatistics")
+.WithTags("Forensic Analysis");
 
 app.Run();
 

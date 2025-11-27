@@ -21,6 +21,7 @@ This repo builds a Weather API, OpenAPI integration to test with [Scalar](https:
 **NEW: 📊 Product Slogans Catalog** - Complete catalog of 28 EV0LVerse products with slogans, sector classifications, market benchmarks ($6.6T), overscale projections ($19.4T), and ROI estimates (avg 198%). [View Catalog](SampleApp/BackEnd/Data/PRODUCT_SLOGANS_README.md)
 
 **NEW: 🔒 Forensic Audit Protocol** - Comprehensive Five-Axis Ripple Protocol (XX, YY, ZZ, TT, WW) for transaction forensics, breach detection, yield reclamation, and Chrono Governance with time-expired signatures aligned to π⁴ cycles. Tribunal-ready evidence generation for sovereign treasury protection. [View Forensic Documentation](SampleApp/BackEnd/Data/FORENSIC_AUDIT_README.md)
+**NEW: 🔍 Blockchain Forensic Analysis System** - Comprehensive cross-chain forensic tracking for asset movements, chain-of-custody documentation, and legal-grade forensic reports. Track transactions across Ethereum, Cronos, Avalanche, Base, and more. Generate provenance trails for legal proceedings, insurance claims, and recovery efforts. [View Documentation](SampleApp/BackEnd/Data/FORENSIC_ANALYSIS_README.md)
 
 **NEW**: This repository now includes the **BLEU Flame™ Market Tier** and **Zion Gold Bar Protocol** - advanced ENFT (Enhanced Non-Fungible Token) systems integrated with blockchain technology, featuring Saturn-Strata resource classification, MetaVault yield generation, and cross-sector income routing.
 
@@ -43,6 +44,7 @@ Everything you do here is contained within this one codespace. There is no repos
 ### Systems Documentation
 - **[BLEU Flame™ README](SampleApp/BackEnd/Data/BLEU_FLAME_README.md)** - Complete ENFT system documentation
 - **[Zion Gold Bar README](SampleApp/BackEnd/Data/ZION_GOLD_BAR_README.md)** - Saturn-Strata protocol details
+- **[Forensic Analysis System](SampleApp/BackEnd/Data/FORENSIC_ANALYSIS_README.md)** - Blockchain forensic tracking and legal documentation
 - **[Sovereign Spiral Flush Codex](SOVEREIGN_SPIRAL_FLUSH_CODEX.md)** - Complete 10-sector spiral grid system documentation
 - **[Product Slogans Catalog](SampleApp/BackEnd/Data/PRODUCT_SLOGANS_README.md)** - Comprehensive product catalog with slogans, sectors, and ROI projections
 - **[Forensic Audit Protocol](SampleApp/BackEnd/Data/FORENSIC_AUDIT_README.md)** - Five-Axis Ripple Protocol for transaction forensics, breach detection, and Chrono Governance
@@ -162,6 +164,7 @@ Access the interactive API documentation at `/scalar` when running the backend:
 - **BLEU Flame**: `/bleu/*` endpoints
 - **MetaVault**: `/metavault/*` endpoints  
 - **Zion Gold Bar**: `/zion/*` endpoints
+- **Forensic Analysis**: `/forensics/*` endpoints - Cross-chain asset tracking, chain-of-custody, and forensic reports
 
 ### Smart Contracts
 - **BLEULION_TREASURY.sol**: Revenue vault and staking mechanism (Solidity)
