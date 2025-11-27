@@ -17,7 +17,17 @@ public class ForensicAuditService
     private readonly List<SecurityCheckpoint> _checkpoints = new();
     private readonly ChainMirrorConfig _mirrorConfig = new();
     
+    // Constants for π⁴ cycle and ID generation
     private const double PiFourth = 97.409091034; // π⁴
+    private const int AuditIdLength = 20;
+    private const int AlertIdLength = 18;
+    private const int ReclamationIdLength = 20;
+    private const int ENFTIdLength = 18;
+    private const int CheckpointIdLength = 16;
+    private const int CodexSignatureHashLength = 16;
+    private const int EthAddressHexLength = 40; // Length without 0x prefix
+    private const int LineagePrefixLength = 8;
+    private const int TemporalDriftThresholdSeconds = 300; // 5 minutes
 
     public ForensicAuditService(ILogger<ForensicAuditService> logger)
     {
@@ -37,7 +47,7 @@ public class ForensicAuditService
         DateTime blockTimestamp,
         long blockNumber)
     {
-        var auditId = $"AUDIT-{Guid.NewGuid():N}"[..20];
+        var auditId = $"AUDIT-{Guid.NewGuid():N}"[..AuditIdLength];
         
         // Build XX Vector (Alteration Analysis)
         var xxVector = AnalyzeAlteration(operatorAddress, chainId, sourceAddress, destinationAddress);
@@ -122,11 +132,11 @@ public class ForensicAuditService
         return new AlterationVector
         {
             OperatorAddress = operatorAddress,
-            ContractAddress = $"0x{ComputeHash(operatorAddress)[..40]}",
+            ContractAddress = $"0x{ComputeHash(operatorAddress)[..EthAddressHexLength]}",
             ChainId = chainId,
             AlterationType = alterationType,
-            OriginalLineage = $"LINEAGE-{source[..8]}",
-            ModifiedLineage = alterationType != AlterationType.None ? $"MODIFIED-{destination[..8]}" : string.Empty,
+            OriginalLineage = $"LINEAGE-{source[..LineagePrefixLength]}",
+            ModifiedLineage = alterationType != AlterationType.None ? $"MODIFIED-{destination[..LineagePrefixLength]}" : string.Empty,
             LineagePreserved = lineagePreserved,
             AffectedTokenIds = Array.Empty<string>()
         };
@@ -138,7 +148,7 @@ public class ForensicAuditService
     private ResonanceVector AnalyzeResonance(string source, string destination, decimal amount)
     {
         var returnedToSource = string.Equals(source, destination, StringComparison.OrdinalIgnoreCase);
-        var codexSignature = $"CODEX-{ComputeHash($"{source}{destination}{amount}")[..16]}";
+        var codexSignature = $"CODEX-{ComputeHash($"{source}{destination}{amount}")[..CodexSignatureHashLength]}";
         
         return new ResonanceVector
         {
@@ -185,7 +195,7 @@ public class ForensicAuditService
         var piQuarterTick = (blockNumber % (long)PiFourth) / PiFourth;
         
         // Detect temporal anomalies
-        var temporalLoop = Math.Abs(drift.TotalSeconds) > 300; // 5 minute drift threshold
+        var temporalLoop = Math.Abs(drift.TotalSeconds) > TemporalDriftThresholdSeconds;
         var delayExploit = drift.TotalSeconds < 0; // Future timestamp
         
         return new TemporalVector
@@ -314,7 +324,7 @@ public class ForensicAuditService
     {
         var alert = new BreachAlert
         {
-            AlertId = $"ALERT-{Guid.NewGuid():N}"[..18],
+            AlertId = $"ALERT-{Guid.NewGuid():N}"[..AlertIdLength],
             DetectedAt = DateTime.UtcNow,
             Severity = audit.ThreatLevel,
             Description = $"Security breach detected in transaction {audit.TransactionHash}",
@@ -340,8 +350,8 @@ public class ForensicAuditService
         decimal recoverAmount,
         ReclamationAction action)
     {
-        var reclamationId = $"RECLAIM-{Guid.NewGuid():N}"[..20];
-        var newENFTId = action == ReclamationAction.ReMint ? $"ENFT-{Guid.NewGuid():N}"[..18] : string.Empty;
+        var reclamationId = $"RECLAIM-{Guid.NewGuid():N}"[..ReclamationIdLength];
+        var newENFTId = action == ReclamationAction.ReMint ? $"ENFT-{Guid.NewGuid():N}"[..ENFTIdLength] : string.Empty;
         
         var reclamation = new YieldReclamation
         {
@@ -377,7 +387,7 @@ public class ForensicAuditService
     /// </summary>
     public Task<SecurityCheckpoint> CreateSecurityCheckpoint(string chainId)
     {
-        var checkpointId = $"CKPT-{Guid.NewGuid():N}"[..16];
+        var checkpointId = $"CKPT-{Guid.NewGuid():N}"[..CheckpointIdLength];
         
         var checkpoint = new SecurityCheckpoint
         {

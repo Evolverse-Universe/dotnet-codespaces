@@ -15,6 +15,7 @@ public class ChronoGovernanceService
     private readonly Dictionary<string, List<ChronoSignature>> _assetSignatures = new();
     
     private const double PiFourth = 97.409091034; // π⁴
+    private const int SignatureIdLength = 20;
     private static readonly TimeSpan DefaultExpiration = TimeSpan.FromHours(24);
 
     public ChronoGovernanceService(ILogger<ChronoGovernanceService> logger)
@@ -30,7 +31,7 @@ public class ChronoGovernanceService
         string assetId,
         TimeSpan? customExpiration = null)
     {
-        var signatureId = $"CHRONO-{Guid.NewGuid():N}"[..20];
+        var signatureId = $"CHRONO-{Guid.NewGuid():N}"[..SignatureIdLength];
         var now = DateTime.UtcNow;
         var expiration = customExpiration ?? DefaultExpiration;
         
@@ -203,7 +204,7 @@ public class ChronoGovernanceService
     /// <summary>
     /// Issue dual signatures for high-value operations (requires two signers)
     /// </summary>
-    public Task<(ChronoSignature primary, ChronoSignature secondary)> IssueDualSignature(
+    public async Task<(ChronoSignature primary, ChronoSignature secondary)> IssueDualSignature(
         string primarySigner,
         string secondarySigner,
         string assetId,
@@ -216,14 +217,14 @@ public class ChronoGovernanceService
         
         var expiration = customExpiration ?? DefaultExpiration;
         
-        var primarySignature = IssueChronoSignature(primarySigner, assetId, expiration).Result;
-        var secondarySignature = IssueChronoSignature(secondarySigner, assetId, expiration).Result;
+        var primarySignature = await IssueChronoSignature(primarySigner, assetId, expiration);
+        var secondarySignature = await IssueChronoSignature(secondarySigner, assetId, expiration);
         
         _logger.LogInformation(
             "Dual chrono signatures issued for asset {AssetId}: {Primary} and {Secondary}",
             assetId, primarySignature.SignatureId, secondarySignature.SignatureId);
         
-        return Task.FromResult((primarySignature, secondarySignature));
+        return (primarySignature, secondarySignature);
     }
 
     /// <summary>
