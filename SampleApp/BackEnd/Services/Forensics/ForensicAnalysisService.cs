@@ -332,8 +332,10 @@ public class ForensicAnalysisService
         decimal amountSent,
         decimal? amountReceived)
     {
-        var isCompleted = !string.IsNullOrEmpty(destinationTxHash) && amountReceived.HasValue;
-        var isStuck = !isCompleted && (DateTime.UtcNow - DateTime.UtcNow).TotalMinutes > 30; // Simplified check
+        var isCompleted = !string.IsNullOrEmpty(destinationTxHash) && amountReceived.HasValue && amountReceived > 0;
+        // A bridge is considered stuck if it's not completed and no destination tx exists
+        // In production, this would compare against the source transaction timestamp
+        var isStuck = !isCompleted && string.IsNullOrEmpty(destinationTxHash);
 
         var analysis = new BridgeAnalysis
         {
