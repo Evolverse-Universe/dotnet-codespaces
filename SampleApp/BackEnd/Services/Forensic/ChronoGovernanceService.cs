@@ -101,7 +101,9 @@ public class ChronoGovernanceService
             return Task.FromResult((false, "Cryptographic signature verification failed"));
         }
         
-        _logger.LogInformation("Chrono signature {SignatureId} validated successfully", signatureId);
+        // Sanitize signatureId before logging to avoid log forging
+        var safeSignatureId = signatureId?.Replace("\r", "").Replace("\n", "");
+        _logger.LogInformation("Chrono signature {SignatureId} validated successfully", safeSignatureId);
         return Task.FromResult((true, "Signature valid"));
     }
 
