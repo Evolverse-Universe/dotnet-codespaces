@@ -4,6 +4,11 @@ using BackEnd.Services;
 using BackEnd.Services.BLEU;
 using BackEnd.Services.ES0IL;
 using BackEnd.Services.MetaSchools;
+using BackEnd.Services.Forensic;
+using BackEnd.Models.BLEU;
+using BackEnd.Models.ES0IL;
+using BackEnd.Models.MetaSchools;
+using BackEnd.Models.Forensic;
 using BackEnd.Services.Forensics;
 using BackEnd.Services.VisualAnalysis;
 using BackEnd.Models.BLEU;
@@ -39,6 +44,9 @@ builder.Services.AddSingleton<ES0ILService>();
 builder.Services.AddSingleton<MetaSchoolsService>();
 // Register Unified Economic Ledger
 builder.Services.AddSingleton<UnifiedEconomicLedgerService>();
+// Register Forensic Audit and Chrono Governance services
+builder.Services.AddSingleton<ForensicAuditService>();
+builder.Services.AddSingleton<ChronoGovernanceService>();
 // Register Blockchain Forensic Analysis Service
 builder.Services.AddSingleton<ForensicAnalysisService>();
 // Register Visual Analysis Service for security sweep checks
@@ -634,6 +642,243 @@ app.MapGet("/ledger/export/csv", async (UnifiedEconomicLedgerService service) =>
 .WithName("ExportLedgerCSV")
 .WithTags("Unified Ledger");
 
+// ========== Forensic Audit API Endpoints (Five-Axis Ripple Protocol) ==========
+
+// Perform forensic audit on a transaction
+app.MapPost("/forensic/audit", async (ForensicAuditService service, 
+    string transactionHash,
+    string operatorAddress,
+    string sourceAddress,
+    string destinationAddress,
+    decimal amount,
+    string chainId,
+    DateTime blockTimestamp,
+    long blockNumber) =>
+{
+    var audit = await service.PerformForensicAudit(
+        transactionHash, operatorAddress, sourceAddress, destinationAddress,
+        amount, chainId, blockTimestamp, blockNumber);
+    return Results.Ok(audit);
+})
+.WithName("PerformForensicAudit")
+.WithTags("Forensic Audit")
+.WithDescription("Perform a comprehensive Five-Axis forensic audit on a transaction using the Ripple Protocol (XX, YY, ZZ, TT, WW vectors)");
+
+// Get all forensic audit records
+app.MapGet("/forensic/audits", async (ForensicAuditService service) =>
+{
+    var audits = await service.GetAllAuditRecords();
+    return Results.Ok(audits);
+})
+.WithName("GetAllForensicAudits")
+.WithTags("Forensic Audit");
+
+// Get audits by threat level
+app.MapGet("/forensic/audits/threat/{level}", async (ForensicAuditService service, ThreatLevel level) =>
+{
+    var audits = await service.GetAuditsByThreatLevel(level);
+    return Results.Ok(audits);
+})
+.WithName("GetAuditsByThreatLevel")
+.WithTags("Forensic Audit");
+
+// Get breach alerts
+app.MapGet("/forensic/alerts", async (ForensicAuditService service) =>
+{
+    var alerts = await service.GetBreachAlerts();
+    return Results.Ok(alerts);
+})
+.WithName("GetBreachAlerts")
+.WithTags("Forensic Audit");
+{
+    if (string.IsNullOrWhiteSpace(originalTokenId) ||
+        unauthorizedFlowIds == null ||
+        unauthorizedFlowIds.Length == 0 ||
+        recoverAmount <= 0)
+    {
+        return Results.BadRequest("Invalid reclamation parameters");
+    }
+// Execute yield reclamation
+app.MapPost("/forensic/reclaim", async (ForensicAuditService service,
+    string originalTokenId,
+    string[] unauthorizedFlowIds,
+    decimal recoverAmount,
+    ReclamationAction action) =>
+{
+    var reclamation = await service.ExecuteYieldReclamation(
+        originalTokenId, unauthorizedFlowIds, recoverAmount, action);
+    return Results.Ok(reclamation);
+})
+.WithName("ExecuteYieldReclamation")
+.WithTags("Forensic Audit")
+.WithDescription("Execute yield reclamation for unauthorized flows - nullify, re-mint, collapse, or freeze assets");
+
+// Get yield reclamations
+app.MapGet("/forensic/reclamations", async (ForensicAuditService service) =>
+{
+    var reclamations = await service.GetYieldReclamations();
+    return Results.Ok(reclamations);
+})
+.WithName("GetYieldReclamations")
+.WithTags("Forensic Audit");
+
+// Create security checkpoint
+app.MapPost("/forensic/checkpoint/{chainId}", async (ForensicAuditService service, string chainId) =>
+{
+    var checkpoint = await service.CreateSecurityCheckpoint(chainId);
+    return Results.Ok(checkpoint);
+})
+.WithName("CreateSecurityCheckpoint")
+.WithTags("Forensic Audit")
+.WithDescription("Create a security checkpoint for protocol hardening with dual-signature and quad-octa lock verification");
+
+// Get security checkpoints
+app.MapGet("/forensic/checkpoints", async (ForensicAuditService service) =>
+{
+    var checkpoints = await service.GetSecurityCheckpoints();
+    return Results.Ok(checkpoints);
+})
+.WithName("GetSecurityCheckpoints")
+.WithTags("Forensic Audit");
+
+// Get forensic dashboard statistics
+app.MapGet("/forensic/dashboard", async (ForensicAuditService service) =>
+{
+    var stats = await service.GetDashboardStats();
+    return Results.Ok(stats);
+})
+.WithName("GetForensicDashboard")
+.WithTags("Forensic Audit")
+.WithDescription("Get real-time forensic dashboard statistics for threat monitoring");
+
+// Get chain mirror configuration
+app.MapGet("/forensic/mirror-config", async (ForensicAuditService service) =>
+{
+    var config = await service.GetChainMirrorConfig();
+    return Results.Ok(config);
+})
+.WithName("GetChainMirrorConfig")
+.WithTags("Forensic Audit")
+.WithDescription("Get multi-chain mirror configuration for full transparency across Ethereum, Cronos, zkSync, Berachain, Polygon, Bitcoin, Solana");
+
+// ========== Chrono Governance API Endpoints ==========
+
+// Issue chrono signature
+app.MapPost("/chrono/signature/issue", async (ChronoGovernanceService service,
+    string signerAddress,
+    string assetId,
+    int? expirationHours) =>
+{
+    var expiration = expirationHours.HasValue ? TimeSpan.FromHours(expirationHours.Value) : (TimeSpan?)null;
+    var signature = await service.IssueChronoSignature(signerAddress, assetId, expiration);
+    return Results.Ok(signature);
+})
+.WithName("IssueChronoSignature")
+.WithTags("Chrono Governance")
+.WithDescription("Issue a time-expired chrono signature aligned with π⁴ cycles");
+
+// Validate chrono signature
+app.MapGet("/chrono/signature/validate/{signatureId}", async (ChronoGovernanceService service, string signatureId) =>
+{
+    var (isValid, reason) = await service.ValidateChronoSignature(signatureId);
+    return Results.Ok(new { signatureId, isValid, reason });
+})
+.WithName("ValidateChronoSignature")
+.WithTags("Chrono Governance");
+
+// Revoke chrono signature
+app.MapPost("/chrono/signature/revoke", async (ChronoGovernanceService service,
+    string signatureId,
+    string revokerAddress) =>
+{
+    var success = await service.RevokeChronoSignature(signatureId, revokerAddress);
+    return success 
+        ? Results.Ok(new { signatureId, revoked = true })
+        : Results.BadRequest(new { signatureId, revoked = false, reason = "Unauthorized or not found" });
+})
+.WithName("RevokeChronoSignature")
+.WithTags("Chrono Governance");
+
+// Get signatures for asset
+app.MapGet("/chrono/signatures/asset/{assetId}", async (ChronoGovernanceService service, string assetId) =>
+{
+    var signatures = await service.GetSignaturesForAsset(assetId);
+    return Results.Ok(signatures);
+})
+.WithName("GetSignaturesForAsset")
+.WithTags("Chrono Governance");
+
+// Get valid signatures
+app.MapGet("/chrono/signatures/valid", async (ChronoGovernanceService service) =>
+{
+    var signatures = await service.GetValidSignatures();
+    return Results.Ok(signatures);
+})
+.WithName("GetValidChronoSignatures")
+.WithTags("Chrono Governance");
+
+// Get expired signatures
+app.MapGet("/chrono/signatures/expired", async (ChronoGovernanceService service) =>
+{
+    var signatures = await service.GetExpiredSignatures();
+    return Results.Ok(signatures);
+})
+.WithName("GetExpiredChronoSignatures")
+.WithTags("Chrono Governance");
+
+// Issue dual signature for high-value operations
+app.MapPost("/chrono/signature/dual", async (ChronoGovernanceService service,
+    string primarySigner,
+    string secondarySigner,
+    string assetId,
+    int? expirationHours) =>
+{
+    try
+    {
+        var expiration = expirationHours.HasValue ? TimeSpan.FromHours(expirationHours.Value) : (TimeSpan?)null;
+        var (primary, secondary) = await service.IssueDualSignature(primarySigner, secondarySigner, assetId, expiration);
+        return Results.Ok(new { primary, secondary });
+    }
+    catch (InvalidOperationException ex)
+    {
+        return Results.BadRequest(new { error = ex.Message });
+    }
+})
+.WithName("IssueDualChronoSignature")
+.WithTags("Chrono Governance")
+.WithDescription("Issue dual chrono signatures for high-value operations requiring two different signers");
+
+// Verify dual signature
+app.MapPost("/chrono/signature/dual/verify", async (ChronoGovernanceService service,
+    string primarySignatureId,
+    string secondarySignatureId,
+    string assetId) =>
+{
+    var isValid = await service.VerifyDualSignature(primarySignatureId, secondarySignatureId, assetId);
+    return Results.Ok(new { primarySignatureId, secondarySignatureId, assetId, isValid });
+})
+.WithName("VerifyDualChronoSignature")
+.WithTags("Chrono Governance");
+
+// Get chrono governance statistics
+app.MapGet("/chrono/stats", async (ChronoGovernanceService service) =>
+{
+    var stats = await service.GetGovernanceStats();
+    return Results.Ok(stats);
+})
+.WithName("GetChronoGovernanceStats")
+.WithTags("Chrono Governance")
+.WithDescription("Get chrono governance statistics including signature counts and π⁴ cycle averages");
+
+// Cleanup expired signatures
+app.MapPost("/chrono/cleanup", async (ChronoGovernanceService service, int retentionDays) =>
+{
+    var retention = TimeSpan.FromDays(retentionDays);
+    var cleaned = await service.CleanupExpiredSignatures(retention);
+    return Results.Ok(new { cleanedCount = cleaned, retentionDays });
+})
+.WithName("CleanupExpiredSignatures")
+.WithTags("Chrono Governance");
 // ========== Blockchain Forensic Analysis API Endpoints ==========
 
 // Create a new forensic investigation case

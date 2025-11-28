@@ -20,6 +20,7 @@ This repo builds a Weather API, OpenAPI integration to test with [Scalar](https:
 
 **NEW: 📊 Product Slogans Catalog** - Complete catalog of 28 EV0LVerse products with slogans, sector classifications, market benchmarks ($6.6T), overscale projections ($19.4T), and ROI estimates (avg 198%). [View Catalog](SampleApp/BackEnd/Data/PRODUCT_SLOGANS_README.md)
 
+**NEW: 🔒 Forensic Audit Protocol** - Comprehensive Five-Axis Ripple Protocol (XX, YY, ZZ, TT, WW) for transaction forensics, breach detection, yield reclamation, and Chrono Governance with time-expired signatures aligned to π⁴ cycles. Tribunal-ready evidence generation for sovereign treasury protection. [View Forensic Documentation](SampleApp/BackEnd/Data/FORENSIC_AUDIT_README.md)
 **NEW: 🔍 Blockchain Forensic Analysis System** - Comprehensive cross-chain forensic tracking for asset movements, chain-of-custody documentation, and legal-grade forensic reports. Track transactions across Ethereum, Cronos, Avalanche, Base, and more. Generate provenance trails for legal proceedings, insurance claims, and recovery efforts. [View Documentation](SampleApp/BackEnd/Data/FORENSIC_ANALYSIS_README.md)
 
 **NEW: 🔐 Visual Analysis Security Sweep** - Professional pattern recognition system for security audits with 7 analysis types: system integrity, network behavior, GitHub analysis, device compromise detection, impersonation detection, government signature detection, and AI synthetic detection. [View Documentation](SampleApp/BackEnd/Data/VISUAL_ANALYSIS_README.md)
@@ -48,6 +49,7 @@ Everything you do here is contained within this one codespace. There is no repos
 - **[Forensic Analysis System](SampleApp/BackEnd/Data/FORENSIC_ANALYSIS_README.md)** - Blockchain forensic tracking and legal documentation
 - **[Sovereign Spiral Flush Codex](SOVEREIGN_SPIRAL_FLUSH_CODEX.md)** - Complete 10-sector spiral grid system documentation
 - **[Product Slogans Catalog](SampleApp/BackEnd/Data/PRODUCT_SLOGANS_README.md)** - Comprehensive product catalog with slogans, sectors, and ROI projections
+- **[Forensic Audit Protocol](SampleApp/BackEnd/Data/FORENSIC_AUDIT_README.md)** - Five-Axis Ripple Protocol for transaction forensics, breach detection, and Chrono Governance
 - **[API Testing Examples](SampleApp/BackEnd/Data/API_TESTING_EXAMPLES.md)** - Comprehensive API usage guide
 
 
