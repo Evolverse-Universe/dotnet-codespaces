@@ -62,11 +62,12 @@ public class ChronoGovernanceService
         }
         assetSigs.Add(chronoSignature);
         
-        // Sanitize assetId before logging to avoid log forging
+        // Sanitize assetId and signerAddress before logging to avoid log forging
         var safeAssetId = assetId?.Replace("\r", "").Replace("\n", "");
+        var safeSignerAddress = signerAddress?.Replace("\r", "").Replace("\n", "");
         _logger.LogInformation(
             "Chrono signature {SignatureId} issued for asset {AssetId} by {Signer}, expires at {Expiry}",
-            signatureId, safeAssetId, signerAddress, chronoSignature.ExpiresAt);
+            signatureId, safeAssetId, safeSignerAddress, chronoSignature.ExpiresAt);
         
         return Task.FromResult(chronoSignature);
     }
