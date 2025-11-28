@@ -686,7 +686,14 @@ app.MapGet("/forensic/alerts", async (ForensicAuditService service) =>
 })
 .WithName("GetBreachAlerts")
 .WithTags("Forensic Audit");
-
+{
+    if (string.IsNullOrWhiteSpace(originalTokenId) ||
+        unauthorizedFlowIds == null ||
+        unauthorizedFlowIds.Length == 0 ||
+        recoverAmount <= 0)
+    {
+        return Results.BadRequest("Invalid reclamation parameters");
+    }
 // Execute yield reclamation
 app.MapPost("/forensic/reclaim", async (ForensicAuditService service,
     string originalTokenId,
