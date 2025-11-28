@@ -406,7 +406,7 @@ public class ForensicAuditService
         
         _logger.LogInformation(
             "Security checkpoint {CheckpointId} created for chain {ChainId}",
-            checkpointId, chainId);
+            checkpointId, SanitizeForLog(chainId));
         
         return Task.FromResult(checkpoint);
     }
@@ -507,4 +507,26 @@ public class ForensicAuditService
     {
         return ComputeHash($"{auditId}|{transactionHash}|{level}|{DateTime.UtcNow:O}");
     }
+    // Helper to sanitize user input before logging (removes newlines and control chars)
+    private static string SanitizeForLog(string input)
+    {
+        if (input == null) return string.Empty;
+        var sb = new StringBuilder(input.Length);
+        foreach (char c in input)
+        {
+            // Skip ASCII control chars (incl. newlines)
+            if (c >= 32)
+            {
+                sb.Append(c);
+            }
+            else if (c == '\t')
+            {
+                // Optionally replace tab with a space
+                sb.Append(' ');
+            }
+            // else skip char
+        }
+        return sb.ToString();
+    }
+
 }
