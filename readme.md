@@ -22,6 +22,8 @@ This repo builds a Weather API, OpenAPI integration to test with [Scalar](https:
 
 **NEW: 🔍 Blockchain Forensic Analysis System** - Comprehensive cross-chain forensic tracking for asset movements, chain-of-custody documentation, and legal-grade forensic reports. Track transactions across Ethereum, Cronos, Avalanche, Base, and more. Generate provenance trails for legal proceedings, insurance claims, and recovery efforts. [View Documentation](SampleApp/BackEnd/Data/FORENSIC_ANALYSIS_README.md)
 
+**NEW: 🔐 Visual Analysis Security Sweep** - Professional pattern recognition system for security audits with 7 analysis types: system integrity, network behavior, GitHub analysis, device compromise detection, impersonation detection, government signature detection, and AI synthetic detection. [View Documentation](SampleApp/BackEnd/Data/VISUAL_ANALYSIS_README.md)
+
 **NEW**: This repository now includes the **BLEU Flame™ Market Tier** and **Zion Gold Bar Protocol** - advanced ENFT (Enhanced Non-Fungible Token) systems integrated with blockchain technology, featuring Saturn-Strata resource classification, MetaVault yield generation, and cross-sector income routing.
 
 We've given you both a frontend and backend to play around with and where you go from here is up to you!
@@ -163,6 +165,7 @@ Access the interactive API documentation at `/scalar` when running the backend:
 - **MetaVault**: `/metavault/*` endpoints  
 - **Zion Gold Bar**: `/zion/*` endpoints
 - **Forensic Analysis**: `/forensics/*` endpoints - Cross-chain asset tracking, chain-of-custody, and forensic reports
+- **Visual Analysis**: `/visual-analysis/*` endpoints - Security sweep checks with 7 analysis types
 
 ### Smart Contracts
 - **BLEULION_TREASURY.sol**: Revenue vault and staking mechanism (Solidity)

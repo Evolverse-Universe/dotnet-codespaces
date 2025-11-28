@@ -5,10 +5,12 @@ using BackEnd.Services.BLEU;
 using BackEnd.Services.ES0IL;
 using BackEnd.Services.MetaSchools;
 using BackEnd.Services.Forensics;
+using BackEnd.Services.VisualAnalysis;
 using BackEnd.Models.BLEU;
 using BackEnd.Models.ES0IL;
 using BackEnd.Models.MetaSchools;
 using BackEnd.Models.Forensics;
+using BackEnd.Models.VisualAnalysis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +41,8 @@ builder.Services.AddSingleton<MetaSchoolsService>();
 builder.Services.AddSingleton<UnifiedEconomicLedgerService>();
 // Register Blockchain Forensic Analysis Service
 builder.Services.AddSingleton<ForensicAnalysisService>();
+// Register Visual Analysis Service for security sweep checks
+builder.Services.AddSingleton<VisualAnalysisService>();
 
 var app = builder.Build();
 
@@ -775,6 +779,79 @@ app.MapGet("/forensics/stats", async (ForensicAnalysisService service) =>
 })
 .WithName("GetForensicStatistics")
 .WithTags("Forensic Analysis");
+
+// ========== Visual Analysis Security Sweep API Endpoints ==========
+// Based on visual-analysis rules for disciplined, professional pattern recognition
+
+// Get available analysis types
+app.MapGet("/visual-analysis/types", async (VisualAnalysisService service) =>
+{
+    var types = await service.GetAnalysisTypes();
+    return Results.Ok(types);
+})
+.WithName("GetVisualAnalysisTypes")
+.WithTags("Visual Analysis")
+.WithDescription("Get available security sweep check types: 1-SystemIntegrity, 2-NetworkBehavior, 3-GitHubAnalysis, 4-DeviceCompromise, 5-ImpersonationDetection, 6-GovSignatureDetection, 7-AISyntheticDetection");
+
+// Perform a specific visual analysis
+app.MapPost("/visual-analysis/analyze", async (VisualAnalysisService service, VisualAnalysisRequest request) =>
+{
+    var result = await service.PerformAnalysis(request);
+    return Results.Ok(result);
+})
+.WithName("PerformVisualAnalysis")
+.WithTags("Visual Analysis")
+.WithDescription("Perform a security sweep check based on visual-analysis rules");
+
+// Run comprehensive security sweep (all 7 analysis types)
+app.MapPost("/visual-analysis/comprehensive-sweep", async (VisualAnalysisService service) =>
+{
+    var session = await service.RunComprehensiveSweep();
+    return Results.Ok(session);
+})
+.WithName("RunComprehensiveSweep")
+.WithTags("Visual Analysis")
+.WithDescription("Run all 7 security sweep checks: system integrity, network behavior, GitHub analysis, device compromise, impersonation detection, government signatures, and AI synthetic detection");
+
+// Create a new analysis session
+app.MapPost("/visual-analysis/session/create", async (VisualAnalysisService service) =>
+{
+    var session = await service.CreateSession();
+    return Results.Ok(session);
+})
+.WithName("CreateVisualAnalysisSession")
+.WithTags("Visual Analysis")
+.WithDescription("Create a new analysis session for multiple sequential checks");
+
+// Add analysis to session
+app.MapPost("/visual-analysis/session/{sessionId}/analyze", async (VisualAnalysisService service, string sessionId, VisualAnalysisType analysisType) =>
+{
+    var session = await service.AddAnalysisToSession(sessionId, analysisType);
+    return session != null ? Results.Ok(session) : Results.NotFound(new { error = $"Session {sessionId} not found" });
+})
+.WithName("AddAnalysisToSession")
+.WithTags("Visual Analysis")
+.WithDescription("Add a specific analysis type to an existing session");
+
+// Get session details
+app.MapGet("/visual-analysis/session/{sessionId}", async (VisualAnalysisService service, string sessionId) =>
+{
+    var session = await service.GetSession(sessionId);
+    return session != null ? Results.Ok(session) : Results.NotFound();
+})
+.WithName("GetVisualAnalysisSession")
+.WithTags("Visual Analysis")
+.WithDescription("Get details of a visual analysis session including all performed analyses");
+
+// Get visual analysis statistics
+app.MapGet("/visual-analysis/stats", async (VisualAnalysisService service) =>
+{
+    var stats = await service.GetStatistics();
+    return Results.Ok(stats);
+})
+.WithName("GetVisualAnalysisStatistics")
+.WithTags("Visual Analysis")
+.WithDescription("Get statistics on visual analyses performed");
 
 app.Run();
 
