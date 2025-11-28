@@ -84,15 +84,15 @@ public class VisualAnalysisService
     /// <summary>
     /// Add analysis to an existing session
     /// </summary>
-    public Task<VisualAnalysisSession?> AddAnalysisToSession(string sessionId, VisualAnalysisType analysisType)
+    public async Task<VisualAnalysisSession?> AddAnalysisToSession(string sessionId, VisualAnalysisType analysisType)
     {
         if (!_sessions.TryGetValue(sessionId, out var session))
         {
-            return Task.FromResult<VisualAnalysisSession?>(null);
+            return null;
         }
 
         var request = new VisualAnalysisRequest { AnalysisType = analysisType };
-        var result = PerformAnalysis(request).Result;
+        var result = await PerformAnalysis(request);
         
         var updatedAnalyses = session.Analyses.ToList();
         updatedAnalyses.Add(result);
@@ -105,7 +105,7 @@ public class VisualAnalysisService
         };
 
         _sessions[sessionId] = updatedSession;
-        return Task.FromResult<VisualAnalysisSession?>(updatedSession);
+        return updatedSession;
     }
 
     /// <summary>
